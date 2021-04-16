@@ -1,0 +1,15 @@
+.services{
+    /* height:120vh; */
+    background-image: url("../../../images/shape-4.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+  /* background-attachment: fixed;  */
+  background-size: 100% 100%;
+  /* overflow: hidden; */
+  animation: animate-bg linear 5s infinite;
+}
+
+@keyframes animate-bg {
+    from {background-position:0px;}
+    to{background-position: 300px;}
+}

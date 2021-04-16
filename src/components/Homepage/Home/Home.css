@@ -1,0 +1,33 @@
+.home .btn {
+    background: #FF7C5B none repeat scroll 0 0;
+    color: #fff;
+    display: inline-block;
+    font-weight: 700;
+    padding: 10px 0;
+    text-transform: capitalize;
+    width: 150px;
+    margin-top: 20px;
+    font-size: 16px;
+    border: 2px solid #FF7C5B;
+  
+    }
+.home .btn:hover{
+        background:transparent;
+        transition: all 0.5s ease-in-out 0s;
+        
+        border:2px solid #FF7C5B;
+        color:#FF7C5B;
+}
+  
+.home section{
+    margin: 70px 0;
+    /* min-height:90vh; */
+    /* border:2px solid red; */
+}
+.section-title{
+    color:grey;
+    font-weight: 700;
+}
+.home .section-description{
+    color:grey;
+}

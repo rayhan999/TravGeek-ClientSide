@@ -2,9 +2,11 @@
 
 # dependencies
 /node_modules
+/src/components/Login/firebase.config.js
 /.pnp
 .pnp.js
-
+.vscode/
+.firebase/
 # testing
 /coverage
 
@@ -12,6 +14,8 @@
 /build
 
 # misc
+.firebaserc
+.env
 .DS_Store
 .env.local
 .env.development.local
