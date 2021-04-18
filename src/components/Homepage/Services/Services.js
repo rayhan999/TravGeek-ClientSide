@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Services.css'
 import ServiceBox from '../ServiceBox/ServiceBox';
 
 const Services = () => {
+    const [services, setServices] = useState([])
+    useEffect(() => {
+        fetch(`http://localhost:8000/services`)
+            .then(res => res.json())
+            .then(data => setServices(data))
+    }, [])
     return (
         <section className="mt-5 mb-5 services">
             <div className="container">
@@ -11,9 +17,12 @@ const Services = () => {
                     <h2>Our Most Popular Adventures</h2>
                 </div>
                 <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center pb-5">
-                    <ServiceBox></ServiceBox>
-                    <ServiceBox></ServiceBox>
-                    <ServiceBox></ServiceBox>
+                    {
+                        services.map(service => <ServiceBox service={service}></ServiceBox>)
+                    }
+
+                    {/* <ServiceBox></ServiceBox>
+                    <ServiceBox></ServiceBox> */}
                 </div>
             </div>
         </section>

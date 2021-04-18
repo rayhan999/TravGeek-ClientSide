@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { UserContext } from '../../../App';
 import './Navbar.css';
 
 const Navbar = () => {
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const [navActice, setNavActive] = useState(false);
     const changeNavBG = () => {
         if (window.scrollY > 80) {
@@ -13,8 +15,8 @@ const Navbar = () => {
     return (
         <nav className={navActice ? "navbar navbar-expand-lg navbar-light fixed-top nav-active" : "navbar navbar-expand-lg navbar-light fixed-top"}    >
             <h1 class="navbar-brand text-white" style={{ fontWeight: 'bold' }} >TravGeek</h1>
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
+            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon float-end"></span>
             </button>
 
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -23,20 +25,30 @@ const Navbar = () => {
                         <NavLink className="nav-link mr-5 text-white" to="/home">Home </NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink className="nav-link mr-5" to="/about">About</NavLink>
+                        <NavLink className="nav-link mr-5" to="/about">About Us</NavLink>
                     </li>
                     {/* <li className="nav-item">
                         <NavLink className="nav-link mr-5 " to="">Dental Services</NavLink>
                     </li> */}
                     <li className="nav-item">
-                        <NavLink className="nav-link mr-5  " to="/admin">Reviews</NavLink>
+                        <NavLink className="nav-link mr-5  " to="/review">Reviews</NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink className="nav-link mr-5  " to="/login">Login</NavLink>
+                        <NavLink className="nav-link mr-5  " to="/admin">Admin</NavLink>
                     </li>
                     <li className="nav-item">
                         <NavLink className="nav-link mr-5  " to="/contact">Contact Us</NavLink>
                     </li>
+                    {loggedInUser.isSignedIn ?
+                        <li class="nav-item login" style={{ fontWeight: 'bold' }} >
+                            <span class="nav-link  userName" style={{ cursor: 'default', fontWeight: 'bold', color: 'white' }} onClick={() => setLoggedInUser({})}>{loggedInUser.name}</span>
+                        </li>
+                        :
+
+                        <li class="nav-item ">
+                            <Link class="nav-link  " style={{ color: 'white' }} to="/login">Login</Link>
+                        </li>
+                    }
                 </ul>
             </div>
         </nav>

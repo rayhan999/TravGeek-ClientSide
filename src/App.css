@@ -26,3 +26,7 @@ h2{
   
 }
 
+.main-container{
+  height: 85vh;
+  overflow-y:scroll;
+}

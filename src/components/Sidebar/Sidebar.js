@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
     CDBSidebar,
     CDBSidebarContent,
@@ -12,7 +12,14 @@ import { UserContext } from '../../App';
 
 const Sidebar = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+    const [isAdmin, setAdmin] = useState(null);
     const [sidebarOpen, setSidebarOpen] = useState(true);
+    console.log(loggedInUser.email)
+    useEffect(() => {
+        fetch(`http://localhost:8000/isAdmin?email=` + loggedInUser.email)
+            .then(res => res.json())
+            .then(data => setAdmin(data))
+    }, [loggedInUser.email])
     const handleClick = () => {
 
     }
@@ -20,7 +27,7 @@ const Sidebar = () => {
         <div
             style={{ display: 'flex', height: '100vh', overflow: 'scroll initial' }}
         >
-            <CDBSidebar textColor="#fff" backgroundColor="#333">
+            <CDBSidebar textColor="#fff" backgroundColor="#333" >
                 <CDBSidebarHeader prefix={<i onClick={() => setSidebarOpen(!sidebarOpen)} className="fa fa-bars fa-large"></i>}>
                     <Link
                         to="/"
@@ -38,29 +45,38 @@ const Sidebar = () => {
                         <p>{loggedInUser.name}</p>
                     </div>
                     <CDBSidebarMenu>
-                        <NavLink exact to="/admin" activeClassName="activeClicked">
-                            <CDBSidebarMenuItem icon="columns">Dashboard</CDBSidebarMenuItem>
-                        </NavLink>
-                        <NavLink exact to="/admin/payment" activeClassName="activeClicked">
-                            <CDBSidebarMenuItem icon="table">Tables</CDBSidebarMenuItem>
-                        </NavLink>
-                        <NavLink exact to="/" activeClassName="activeClicked">
-                            <CDBSidebarMenuItem icon="user">Profile page</CDBSidebarMenuItem>
-                        </NavLink>
-                        <NavLink exact to="/analytics" activeClassName="activeClicked">
-                            <CDBSidebarMenuItem icon="chart-line">
-                                Analytics
-              </CDBSidebarMenuItem>
-                        </NavLink>
-                        <NavLink exact to="/" activeClassName="activeClicked">
-                            <CDBSidebarMenuItem icon="shopping-cart">Book</CDBSidebarMenuItem>
-                        </NavLink>
-                        <NavLink exact to="/" activeClassName="activeClicked">
-                            <CDBSidebarMenuItem icon="shopping-bag">Booking List</CDBSidebarMenuItem>
-                        </NavLink>
-                        <NavLink exact to="/" activeClassName="activeClicked">
-                            <CDBSidebarMenuItem icon="comment">Review</CDBSidebarMenuItem>
-                        </NavLink>
+                        {
+                            isAdmin ?
+                                <div>
+                                    <NavLink exact to="/admin" activeClassName="activeClicked">
+                                        <CDBSidebarMenuItem icon="columns">Dashboard</CDBSidebarMenuItem>
+                                    </NavLink>
+                                    <NavLink exact to="/admin/OrderList" activeClassName="activeClicked">
+                                        <CDBSidebarMenuItem icon="shopping-basket">Order List</CDBSidebarMenuItem>
+                                    </NavLink>
+                                    <NavLink exact to="/admin/addService" activeClassName="activeClicked">
+                                        <CDBSidebarMenuItem icon="plus-circle">Add Service</CDBSidebarMenuItem>
+                                    </NavLink>
+                                    <NavLink exact to="/admin/makeAdmin" activeClassName="activeClicked">
+                                        <CDBSidebarMenuItem icon="user-plus">Make Admin</CDBSidebarMenuItem>
+                                    </NavLink>
+                                    <NavLink exact to="/admin/manageServices" activeClassName="activeClicked">
+                                        <CDBSidebarMenuItem icon="list-alt">Manage Services </CDBSidebarMenuItem>
+                                    </NavLink>
+                                </div>
+                                :
+                                <div>
+                                    <NavLink to="/admin/book" activeClassName="activeClicked">
+                                        <CDBSidebarMenuItem icon="shopping-cart">Book</CDBSidebarMenuItem>
+                                    </NavLink>
+                                    <NavLink exact to="/admin/bookingList" activeClassName="activeClicked">
+                                        <CDBSidebarMenuItem icon="shopping-bag">Booking List</CDBSidebarMenuItem>
+                                    </NavLink>
+                                    <NavLink exact to="/admin/review" activeClassName="activeClicked">
+                                        <CDBSidebarMenuItem icon="comment">Review</CDBSidebarMenuItem>
+                                    </NavLink>
+                                </div>
+                        }
 
                         <NavLink
                             exact
@@ -68,22 +84,24 @@ const Sidebar = () => {
                             target="_blank"
                             activeClassName="activeClicked"
                         >
-                            <CDBSidebarMenuItem icon="exclamation-circle">
-                                404 page
-              </CDBSidebarMenuItem>
+
                         </NavLink>
                     </CDBSidebarMenu>
                 </CDBSidebarContent>
 
-                <CDBSidebarFooter style={{ textAlign: 'center' }}>
-                    <div
-                        style={{
-                            padding: '20px 5px',
-                        }}
-                    >
-                        Sidebar Footer
-          </div>
-                </CDBSidebarFooter>
+                <NavLink exact to="/" activeClassName="activeClicked">
+                    <CDBSidebarFooter style={{ textAlign: 'center' }}>
+                        <div
+                            style={{
+                                float: 'right',
+                            }}
+                        >
+                            <CDBSidebarMenuItem icon="power-off" onClick={() => setLoggedInUser({})} style={{ right: '0', backgroundColor: 'white', color: 'black', borderRadius: '70px' }}>
+
+                            </CDBSidebarMenuItem>
+                        </div>
+                    </CDBSidebarFooter>
+                </NavLink>
             </CDBSidebar>
         </div>
     );
