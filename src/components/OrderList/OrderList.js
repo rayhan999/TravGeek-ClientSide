@@ -5,7 +5,7 @@ import OrderBox from './OrderBox';
 const OrderList = () => {
     const [orderList, setOrderList] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:8000/orderList`)
+        fetch(`https://powerful-earth-79300.herokuapp.com/orderList`)
             .then(res => res.json())
             .then(data => setOrderList(data))
     }, [])

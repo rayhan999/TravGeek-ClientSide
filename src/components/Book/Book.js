@@ -27,7 +27,7 @@ const Book = () => {
     const [formSubmit, setFormSubmit] = useState(false);
 
     useEffect(() => {
-        fetch(`http://localhost:8000/services`)
+        fetch(`https://powerful-earth-79300.herokuapp.com/services`)
             .then(res => res.json())
             .then(data => setServicesName(data))
     }, [])
@@ -38,7 +38,7 @@ const Book = () => {
 
     }
     useEffect(() => {
-        fetch(`http://localhost:8000/services/${id}`)
+        fetch(`https://powerful-earth-79300.herokuapp.com/services/${id}`)
             .then(res => res.json())
             .then(data => setServiceDetails(data))
     }, [id])
@@ -82,7 +82,7 @@ const Book = () => {
             status: 'pending'
         };
         console.log(orderDetails);
-        const url = `http://localhost:8000/addOrder`;
+        const url = `https://powerful-earth-79300.herokuapp.com/addOrder`;
 
         fetch(url, {
             method: 'POST',

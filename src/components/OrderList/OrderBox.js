@@ -5,14 +5,14 @@ const OrderBox = (props) => {
     const { _id, tourId, totalCost, startingDate, endDate, orderTime, status } = props.order;
     const [serviceDetails, setServiceDetails] = useState(null);
     useEffect(() => {
-        fetch(`http://localhost:8000/services/${tourId}`)
+        fetch(`https://powerful-earth-79300.herokuapp.com/services/${tourId}`)
             .then(res => res.json())
             .then(data => setServiceDetails(data))
     }, [tourId])
 
     const handleClick = e => {
         console.log(e.target.value);
-        const url = `http://localhost:8000/updateOrder/${_id}/${e.target.value}`;
+        const url = `https://powerful-earth-79300.herokuapp.com/updateOrder/${_id}/${e.target.value}`;
         console.log(url)
         fetch(url, {
             method: 'POST'

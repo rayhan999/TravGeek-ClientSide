@@ -5,7 +5,7 @@ const BookingBox = (props) => {
     const { _id, tourId, totalCost, startingDate, endDate, orderTime, status } = props.booking;
     const [serviceDetails, setServiceDetails] = useState(null);
     useEffect(() => {
-        fetch(`http://localhost:8000/services/${tourId}`)
+        fetch(`https://powerful-earth-79300.herokuapp.com/services/${tourId}`)
             .then(res => res.json())
             .then(data => setServiceDetails(data))
     }, [tourId])

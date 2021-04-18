@@ -16,7 +16,7 @@ const Sidebar = () => {
     const [sidebarOpen, setSidebarOpen] = useState(true);
     console.log(loggedInUser.email)
     useEffect(() => {
-        fetch(`http://localhost:8000/isAdmin?email=` + loggedInUser.email)
+        fetch(`https://powerful-earth-79300.herokuapp.com/isAdmin?email=` + loggedInUser.email)
             .then(res => res.json())
             .then(data => setAdmin(data))
     }, [loggedInUser.email])
@@ -45,12 +45,13 @@ const Sidebar = () => {
                         <p>{loggedInUser.name}</p>
                     </div>
                     <CDBSidebarMenu>
+
+                        <NavLink exact to="/admin" activeClassName="activeClicked">
+                            <CDBSidebarMenuItem icon="columns">Dashboard</CDBSidebarMenuItem>
+                        </NavLink>
                         {
                             isAdmin ?
                                 <div>
-                                    <NavLink exact to="/admin" activeClassName="activeClicked">
-                                        <CDBSidebarMenuItem icon="columns">Dashboard</CDBSidebarMenuItem>
-                                    </NavLink>
                                     <NavLink exact to="/admin/OrderList" activeClassName="activeClicked">
                                         <CDBSidebarMenuItem icon="shopping-basket">Order List</CDBSidebarMenuItem>
                                     </NavLink>

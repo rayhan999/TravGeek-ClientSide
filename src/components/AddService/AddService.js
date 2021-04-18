@@ -34,7 +34,7 @@ const AddService = () => {
         formData.append('location', eventData.location);
         formData.append('description', eventData.description);
 
-        fetch(`http://localhost:8000/addServices`, {
+        fetch(`https://powerful-earth-79300.herokuapp.com/addServices`, {
             method: 'POST',
             body: formData
         })

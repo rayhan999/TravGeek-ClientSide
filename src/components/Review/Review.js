@@ -28,7 +28,7 @@ const Review = () => {
             photo: loggedInUser.photo
         };
         console.log(eventData);
-        const url = `http://localhost:8000/addReview`;
+        const url = `https://powerful-earth-79300.herokuapp.com/addReview`;
 
         fetch(url, {
             method: 'POST',

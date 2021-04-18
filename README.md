@@ -13,4 +13,4 @@ Back-end of a full-stack project where Users can buy book tours by completing pa
 - #### Admins can add,delete,update their providing services.
 
 
-## Live site link: https://rocky-falls-32573.herokuapp.com/
+## Live site link: https://travgeek-pro.web.app/

@@ -5,7 +5,7 @@ import ServiceBox from '../ServiceBox/ServiceBox';
 const Services = () => {
     const [services, setServices] = useState([])
     useEffect(() => {
-        fetch(`http://localhost:8000/services`)
+        fetch(`https://powerful-earth-79300.herokuapp.com/services`)
             .then(res => res.json())
             .then(data => setServices(data))
     }, [])

@@ -13,7 +13,7 @@ const AddAdmin = () => {
 
         };
         console.log(eventData);
-        const url = `http://localhost:8000/addAdmin`;
+        const url = `https://powerful-earth-79300.herokuapp.com/addAdmin`;
 
         fetch(url, {
             method: 'POST',

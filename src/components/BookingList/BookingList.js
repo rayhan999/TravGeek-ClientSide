@@ -8,7 +8,7 @@ const BookingList = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
 
     useEffect(() => {
-        fetch(`http://localhost:8000/bookingList?email=` + loggedInUser.email)
+        fetch(`https://powerful-earth-79300.herokuapp.com/bookingList?email=` + loggedInUser.email)
             .then(res => res.json())
             .then(data => setBookingList(data))
     }, [loggedInUser.email])
